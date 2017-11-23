@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<br><br><br>
+<a href=/todolist/web class=btn btn-default>Retour aux insectes</a>
+<h2 class=page-header>{{informations.id}}</h2>
+<ul class=list-group>
+<li class=list-group-item>Age : {{informations.age}}</li>
+<li class=list-group-item>Famille : {{informations.race}}</li>
+<li class=list-group-item>Race : {{informations.race}}</li>
+<li class=list-group-item>Nourriture : {{informations.race}}</li>
+</ul>
+
+{% endblock %}

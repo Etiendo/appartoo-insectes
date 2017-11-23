@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<br><br><br><br>
+   <table class=table table-bordered>
+    <thead>
+      <tr>
+        <th>Age</th>
+         <th>Famille</th>
+        <th>Race</th>
+        <th>Nourriture</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for informations in todo %}
+      <tr>
+        <td scope=row>{{informations.age}}</td>
+        <td>{{informations.famille}}</td>
+        <td>{{informations.race}}</td>
+        <td>{{informations.nourriture}}</td>
+        <td>
+        <a href=insectes/details/{{informations.id}} class=btn btn-success>Détails</a>
+        <a href=insectes/edit/{{informations.id}} class=btn btn-default>Modifier</a>
+        <a href=insectes/delete/{{informations.id}} class=btn btn-danger>Supprimer</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
