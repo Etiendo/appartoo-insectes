@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use AppBundle\Entity\Informations;
 
-class TodoController extends Controller
+class BugController extends Controller
 {
     /**
      * @Route("/", name="insecte_list")
@@ -140,14 +140,14 @@ class TodoController extends Controller
         }
 
         return $this->render('insectes/edit.html.twig', array(
-            'todo' => $informations,
+            'infos' => $informations,
             'form' => $form->createView()
         ));
 
     }
 
     /**
-     * @Route("/insectes/delete/{id}", name="insecte_delete")
+     * @Route("/insecte/delete/{id}", name="insecte_delete")
      */ 
     public function deleteAction($id)
     {
