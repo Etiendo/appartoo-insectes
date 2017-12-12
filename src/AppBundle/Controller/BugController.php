@@ -48,18 +48,18 @@ class BugController extends Controller
             ->getForm();
 
         $form->handleRequest($request);
-        if($form->isSubmitted() &&  $form->isValid()){
+        if ($form->isSubmitted() &&  $form->isValid()) {
             $age = $form['age']->getData();
             $famille = $form['famille']->getData();
             $race = $form['race']->getData();
-            $nourriture = $form['nourriture']->getData(); 
+            $nourriture = $form['nourriture']->getData();
 
             $informations->setAge($age);
-            $informations->setFamille($famille);          
-            $informations->setRace($race);                  
-            $informations->setNourriture($nourriture);            
+            $informations->setFamille($famille);
+            $informations->setRace($race);
+            $informations->setNourriture($nourriture);
 
-            $sn = $this->getDoctrine()->getManager();      
+            $sn = $this->getDoctrine()->getManager();
             $sn -> persist($informations);
             $sn -> flush();
 
@@ -67,8 +67,7 @@ class BugController extends Controller
                 'notice',
                 'Todo Added'
             );
-            return $this->redirectToRoute('insect_list');            
-
+            return $this->redirectToRoute('insect_list');
         }
 
         return $this->render('insectes/create.html.twig', array(
@@ -78,7 +77,7 @@ class BugController extends Controller
     }
 
     /**
-     * @Route("/insecte/details/{id}", name="insecte_details")
+     * @Route("insecte/details/{id}", name="insecte_details")
      */
     public function detailsAction($id)
     {
@@ -92,18 +91,18 @@ class BugController extends Controller
     }
 
     /**
-     * @Route("/insecte/edit/{id}", name="insecte_edit")
+     * @Route("insecte/edit/{id}", name="insecte_edit")
      */
-    public function editAction($id,Request $request)
-    { 
+    public function editAction($id, Request $request)
+    {
         $informations = $this->getDoctrine()
             ->getRepository('AppBundle:Informations')
             ->find($id);
 
         $informations->setAge($informations->getAge());
-        $informations->setFamille($informations->getFamille());          
-        $informations->setRace($informations->getRace());                  
-        $informations->setNourriture($informations->getNourriture());       
+        $informations->setFamille($informations->getFamille());
+        $informations->setRace($informations->getRace());
+        $informations->setNourriture($informations->getNourriture());
 
         $form = $this->createFormBuilder($informations)
             ->add('age', TextType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
@@ -114,7 +113,7 @@ class BugController extends Controller
             ->getForm();
 
         $form->handleRequest($request);
-        if($form->isSubmitted() &&  $form->isValid()){
+        if ($form->isSubmitted() &&  $form->isValid()) {
             $age = $form['age']->getData();
             $famille = $form['famille']->getData();
             $race = $form['race']->getData();
@@ -125,9 +124,9 @@ class BugController extends Controller
             $informations = $sn->getRepository('AppBundle:Informations')->find($id);
 
             $informations->setAge($age);
-            $informations->setFamille($famille);          
-            $informations->setRace($race);                  
-            $informations->setNourriture($nourriture);                    
+            $informations->setFamille($famille);
+            $informations->setRace($race);
+            $informations->setNourriture($nourriture);
 
             $sn -> flush();
 
@@ -135,23 +134,20 @@ class BugController extends Controller
                 'notice',
                 'Todo Updated'
             );
-            return $this->redirectToRoute('insect_list');            
-
+            return $this->redirectToRoute('insect_list');
         }
 
         return $this->render('insectes/edit.html.twig', array(
             'infos' => $informations,
             'form' => $form->createView()
         ));
-
     }
 
     /**
-     * @Route("/insecte/delete/{id}", name="insecte_delete")
-     */ 
+     * @Route("insecte/delete/{id}", name="insecte_delete")
+     */
     public function deleteAction($id)
     {
-
         $sn = $this->getDoctrine()->getManager();
         $informations = $sn->getRepository('AppBundle:Informations')->find($id);
 
@@ -165,6 +161,6 @@ class BugController extends Controller
             'notice',
             'Todo Removed'
         );
-        return $this->redirectToRoute('insecte_list');             
+        return $this->redirectToRoute('insecte_list');
     }
 }

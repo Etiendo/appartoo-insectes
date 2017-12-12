@@ -156,4 +156,3 @@ class Informations
         return $this->nourriture;
     }
 }
-
